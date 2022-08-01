@@ -1,20 +1,56 @@
-﻿// Queue.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
+#include <vector>
 
-#include <iostream>
+
+template<typename T>
+class Queue
+{
+
+public:
+	void insert(const T& value)
+	{
+		queue.push_back(value);
+	}
+
+	T retrive()
+	{
+
+		if (queue.size())
+		{
+			T tmp{ queue[0] };
+			queue.erase(queue.begin());
+			return tmp;
+		}
+		else {
+			std::cout << "Underflow\nProgram Terminated\n";
+			std::exit(EXIT_FAILURE);
+		}
+	}
+
+	bool empty() { return queue.size(); }
+
+
+private:
+	std::vector <T> queue;
+};
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+
+	Queue<int> que;
+	que.insert(19);
+	que.insert(-2);
+	que.insert(100);
+
+
+	std::cout << que.retrive() << std::endl;
+	std::cout << que.retrive() << std::endl;
+	std::cout << que.retrive() << std::endl;
+	std::cout << que.retrive() << std::endl;
+
+
+
+
+
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
